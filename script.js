@@ -47,16 +47,16 @@ shoutBtn.addEventListener("click", function() {
 //         Inside the listener:
 let btnCalc = document.getElementById("btnCalc")
 btnCalc.addEventListener("click", function() {
-    let size = document.getElementById("rg")
+    let size = document.getElementsByName("rg")
     let sizePrice = 0; 
     for (let i=0; i<size.length; i++) {
         if(size[i].checked) {
             sizePrice = parseFloat(size[i].value)
         }
     }
-    let toppings = document.getElementById("cb")
+    let toppings = document.getElementsByName("cb")
     let toppingsPrice = 0
-    for (let i =0; i<size.length; i++) {
+    for (let i =0; i<toppings.length; i++) {
         if(toppings[i].checked){
             toppingsPrice = toppingsPrice + 1
         }
@@ -70,12 +70,12 @@ btnCalc.addEventListener("click", function() {
     else if(service = "takeout") {
         serviceFee = 1.50; 
     }
-    else {
+    else if(service = "dinein") {
         serviceFee = 0;
     }
     total = sizePrice + toppingsPrice + serviceFee
-    let name = document.getElementById("myInput")
-    if (name = "") {
+    let name = document.getElementById("myInput").value
+    if(name == ""){
         name = "Customer"
     }
     myPara.innerHTML = name + ", your total is $" + total.toFixed(2)
@@ -119,3 +119,18 @@ btnCalc.addEventListener("click", function() {
 //         c) Uncheck ALL topping checkboxes (loop through them)
 //         d) Set the service dropdown value to "dinein"
 //         e) Set the output paragraph innerHTML to ""
+let clear = document.getElementById("clearBtn")
+clear.addEventListener("click", function(){
+    document.getElementById("myInput").value = ""
+    document.getElementById("r3").checked = true
+    let toppings = document.getElementsByName("cb")
+    for(let i=0; i<toppings.length; i++) {
+        if(toppings[i].checked){
+            toppings[i].checked = false
+        }
+    }
+    let service = document.getElementById("serviceSelect").value
+    service = "dinein"
+    myPara.innerHTML = ""
+
+})
