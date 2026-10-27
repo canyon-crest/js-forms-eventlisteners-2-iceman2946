@@ -17,7 +17,7 @@
 
 // STEP 1: Get the "Shout" button by its ID ("btnShout")
 //         using document.getElementById()
-
+let shoutBtn = document.getElementById("btnShout")
 // STEP 2: Add a click event listener to the button.
 //         Inside the listener function:
 //         a) Get the text from the input with ID "shoutInput"
@@ -28,7 +28,9 @@
 //            using .innerHTML
 //
 //         Example: "hello" → "HELLO!"
-
+shoutBtn.addEventListener("click", function() {
+    outShout.innerHTML = shoutInput.value.toUpperCase() + "!";
+})
 
 // ============================================
 //  MAIN: Pizza Builder
@@ -43,7 +45,41 @@
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
-
+let btnCalc = document.getElementById("btnCalc")
+btnCalc.addEventListener("click", function() {
+    let size = document.getElementById("rg")
+    let sizePrice = 0; 
+    for (let i=0; i<size.length; i++) {
+        if(size[i].checked) {
+            sizePrice = parseFloat(size[i].value)
+        }
+    }
+    let toppings = document.getElementById("cb")
+    let toppingsPrice = 0
+    for (let i =0; i<size.length; i++) {
+        if(toppings[i].checked){
+            toppingsPrice = toppingsPrice + 1
+        }
+    }
+    toppingsPrice = toppingsPrice * 0.50
+    let service = document.getElementById("serviceSelect").value
+    let serviceFee = 0
+    if (service = "delivery") {
+        serviceFee = 3;
+    }
+    else if(service = "takeout") {
+        serviceFee = 1.50; 
+    }
+    else {
+        serviceFee = 0;
+    }
+    total = sizePrice + toppingsPrice + serviceFee
+    let name = document.getElementById("myInput")
+    if (name = "") {
+        name = "Customer"
+    }
+    myPara.innerHTML = name + ", your total is $" + total.toFixed(2)
+})
 //   a) Get the selected size price:
 //      Use document.getElementsByName("rg") to get all
 //      size radio buttons. Loop through them to find the
