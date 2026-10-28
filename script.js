@@ -56,7 +56,7 @@ btnCalc.addEventListener("click", function() {
     }
     let toppings = document.getElementsByName("cb")
     let toppingsPrice = 0
-    for (let i =0; i<toppings.length; i++) {
+    for (let i = 0; i<toppings.length; i++) {
         if(toppings[i].checked){
             toppingsPrice = toppingsPrice + 1
         }
@@ -64,16 +64,16 @@ btnCalc.addEventListener("click", function() {
     toppingsPrice = toppingsPrice * 0.50
     let service = document.getElementById("serviceSelect").value
     let serviceFee = 0
-    if (service = "delivery") {
+    if (service == "delivery") {
         serviceFee = 3;
     }
-    else if(service = "takeout") {
+    else if(service === "takeout") {
         serviceFee = 1.50; 
     }
-    else if(service = "dinein") {
+    else if(service === "dinein") {
         serviceFee = 0;
     }
-    total = sizePrice + toppingsPrice + serviceFee
+    let total = sizePrice + toppingsPrice + serviceFee
     let name = document.getElementById("myInput").value
     if(name == ""){
         name = "Customer"
