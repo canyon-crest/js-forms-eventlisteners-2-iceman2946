@@ -129,8 +129,7 @@ clear.addEventListener("click", function(){
             toppings[i].checked = false
         }
     }
-    let service = document.getElementById("serviceSelect").value
-    service = "dinein"
+    document.getElementById("serviceSelect").value = "dinein"
     myPara.innerHTML = ""
 
 })
